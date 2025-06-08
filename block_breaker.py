@@ -86,6 +86,7 @@ class Game(Player,Ball,Block):
     def update(self):
         self.collide()
         self.playercol()
+        self.heart()
         if self.cal:
             if self.level_no==1:
                 pygame.mixer.music.load('backsound1.mp3')
@@ -182,15 +183,23 @@ class Game(Player,Ball,Block):
         ball_grup.empty()
         ball=Ball(600, 600, ball_grup)
         ball_grup.add(ball)
-    def skore(self):
-        pass
-    def block(self):
-        pass
+    def heart(self):
+        heartpicture=pygame.image.load('heart.png')
+        for o in range(self.can):
+            w.blit(heartpicture,(1145,240+60*o))
+        if self.can==0:
+            self.end()
+
+
+
+
     def reset(self):
         self.level_no=1
+        self.can=3
         pygame.mixer.music.stop()
         self.level()
         self.cal=True
+        player.rect.x=600
 
     def end(self):
         edn=True
@@ -202,7 +211,9 @@ class Game(Player,Ball,Block):
                 if e.type==pygame.KEYDOWN:
                     if e.key == pygame.K_RETURN:
                         edn=False
+
                         self.reset()
+
                 if e.type==pygame.QUIT:
                     d=False
                     edn=False
