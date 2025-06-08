@@ -1,6 +1,6 @@
 ## blockbreaker
  ## HOW TO PLAY
- - with 'a' go left
+ - with 'a' go left 
  - with 'd' go right
 
  ## FEATURES
